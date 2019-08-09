@@ -78,28 +78,28 @@ jobs:
         sudo chmod 777 /etc/php.d
         echo mysqli.default_socket=/tmp/mysql.sock     > /etc/php.d/mysqli.ini
         echo pdo_mysql.default_socket=/tmp/mysql.sock  > /etc/php.d/pdo_mysql.ini
-        echo "[mysqld]" > /etc/my.cnf
-        echo "user=mysql" >> /etc/my.cnf
-        echo "basedir=/usr/local/Cellar/mysql/5.7.27" >> /etc/my.cnf
-        echo "datadir=/usr/local/var/mysql" >> /etc/my.cnf
-        echo "port=3306" >> /etc/my.cnf
-        echo "server_id=1" >> /etc/my.cnf
-        echo "socket=/tmp/mysql.sock" >> /etc/my.cnf
-        echo "" >> /etc/my.cnf
-        echo "[client]" >> /etc/my.cnf
-        echo "user=mysql" >> /etc/my.cnf
-        echo "basedir=/usr/local/Cellar/mysql/5.7.27" >> /etc/my.cnf
-        echo "datadir=/usr/local/var/mysql" >> /etc/my.cnf
-        echo "port=3306" >> /etc/my.cnf
-        echo "server_id=1" >> /etc/my.cnf
-        echo "socket=/tmp/mysql.sock" >> /etc/my.cnf
       displayName: 'Install Build'
     - script: |
+        sudo echo "[mysqld]" > /etc/my.cnf
+        sudo echo "user=mysql" >> /etc/my.cnf
+        sudo echo "basedir=$(brew --prefix mysql)" >> /etc/my.cnf
+        sudo echo "datadir=/usr/local/var/mysql" >> /etc/my.cnf
+        sudo echo "port=3306" >> /etc/my.cnf
+        sudo echo "server_id=1" >> /etc/my.cnf
+        sudo echo "socket=/tmp/mysql.sock" >> /etc/my.cnf
+        sudo echo "" >> /etc/my.cnf
+        sudo echo "[client]" >> /etc/my.cnf
+        sudo echo "user=mysql" >> /etc/my.cnf
+        sudo echo "basedir=$(brew --prefix mysql)" >> /etc/my.cnf
+        sudo echo "datadir=/usr/local/var/mysql" >> /etc/my.cnf
+        sudo echo "port=3306" >> /etc/my.cnf
+        sudo echo "server_id=1" >> /etc/my.cnf
+        sudo echo "socket=/tmp/mysql.sock" >> /etc/my.cnf
         brew services start mysql
         # give mysql some time to fully start up
         while [ ! -f /tmp/mysql.sock ]; do sleep 1; done
         mysql -uroot -ppassword -e "CREATE DATABASE IF NOT EXISTS test"
-      displayName: 'Setup'
+      displayName: 'Setup MySQL'
     - template: test.yml
       parameters:
         configurationName: ${{ parameters.configurationName }}
