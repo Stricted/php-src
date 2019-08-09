@@ -81,6 +81,8 @@ jobs:
       displayName: 'Install Build'
     - script: |
         brew services start mysql
+        # give mysql some time to fully start up
+        while [ ! -f /tmp/mysql.sock ]; do sleep 1; done
         mysql -uroot -ppassword -e "CREATE DATABASE IF NOT EXISTS test"
       displayName: 'Setup'
     - template: test.yml
