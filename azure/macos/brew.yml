@@ -28,6 +28,7 @@ steps:
                    tidyp \
                    libxml2 \
                    libxslt \
-                   postgresql
+                   postgresql \
+                   mysql
       brew link icu4c gettext --force
     displayName: 'Install Build Dependencies'
