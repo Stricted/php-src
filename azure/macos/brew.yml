@@ -29,6 +29,6 @@ steps:
                    libxml2 \
                    libxslt \
                    postgresql \
-                   mysql
+                   mysql@5.7
       brew link icu4c gettext --force
     displayName: 'Install Build Dependencies'
