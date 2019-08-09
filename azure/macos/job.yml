@@ -82,7 +82,7 @@ jobs:
     - script: |
         sudo echo "[mysqld]" > /etc/my.cnf
         sudo echo "user=mysql" >> /etc/my.cnf
-        sudo echo "basedir=$(brew --prefix mysql@5.7)" >> /etc/my.cnf
+        sudo echo "basedir=$(brew --prefix mysql)" >> /etc/my.cnf
         sudo echo "datadir=/usr/local/var/mysql" >> /etc/my.cnf
         sudo echo "port=3306" >> /etc/my.cnf
         sudo echo "server_id=1" >> /etc/my.cnf
@@ -90,7 +90,7 @@ jobs:
         sudo echo "" >> /etc/my.cnf
         sudo echo "[client]" >> /etc/my.cnf
         sudo echo "user=mysql" >> /etc/my.cnf
-        sudo echo "basedir=$(brew --prefix mysql@5.7)" >> /etc/my.cnf
+        sudo echo "basedir=$(brew --prefix mysql)" >> /etc/my.cnf
         sudo echo "datadir=/usr/local/var/mysql" >> /etc/my.cnf
         sudo echo "port=3306" >> /etc/my.cnf
         sudo echo "server_id=1" >> /etc/my.cnf
